@@ -40,13 +40,14 @@ class Products extends React.Component {
       return <div>Loading...</div>;
     } else {
       return (
-        <ul>
+        <table>
           {items.map(item => (
-            <li key={item.name}>
-              {item.product_name} {item.unit_cost}
-            </li>
+            <tr key={item._id.$oid}>
+              <td>{item.product_name}</td>
+              <td>{item.unit_cost}</td>
+            </tr>
           ))}
-        </ul>
+        </table>
       );
     }
   }
