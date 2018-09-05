@@ -1,0 +1,22 @@
+[{
+		"id": 1,
+		"description": "sildenafil citrate",
+		"purchased_at": "2018-01-02",
+		"amount": -2.61,
+		"category": "Gardening"
+	},
+	{
+		"id": 2,
+		"description": "Mountain Juniperus ashei",
+		"purchased_at": "2018-01-03",
+		"amount": -29.2,
+		"category": "Trains"
+	},
+	{
+		"id": 3,
+		"description": "Dextromathorphan HBr",
+		"purchased_at": "2018-01-01",
+		"amount": -211,
+		"category": "Stuff"
+	}
+]
