@@ -17,25 +17,27 @@ class TransactionsTable extends React.Component {
     }
 
     componentDidMount() {
-        fetch("transactions.json")
-            .then(res => res.json())
-            .then(
-                (items) => {
-                    this.setState({
-                        isLoaded: true,
-                        items: items
-                    });
-                },
-                // Note: it's important to handle errors here
-                // instead of a catch() block so that we don't swallow
-                // exceptions from actual bugs in components.
-                (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error
-                    });
-                }
-            )
+      fetch("transactions.json")
+        .then(res => res.json())
+        .then(
+            (items) => {
+                this.setState({
+                    isLoaded: true,
+                    items: items
+                });
+
+                console.log("Data loaded:", items);
+            },
+            // Note: it's important to handle errors here
+            // instead of a catch() block so that we don't swallow
+            // exceptions from actual bugs in components.
+            (error) => {
+                this.setState({
+                    isLoaded: true,
+                    error
+                });
+            }
+        );
     }
 
     compareBy(key) {
@@ -45,7 +47,6 @@ class TransactionsTable extends React.Component {
             return 0;
         };
     }
-
 
     sortBy(key) {
         let arrayCopy = [...this.state.items];
@@ -108,16 +109,91 @@ class TransactionsTable extends React.Component {
     }
 }
 
-function Transactions(props) {
+class TransactionsSearchForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+  		start_date: '',
+  		end_date: ''
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(event) {
+    this.props.onSubmit(event, this.state);
+    event.preventDefault();
+  }
+
+  handleChange(event) {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
+  }
+
+  render() {
     return (
-        <div>
-            <h1 className="show-for-sr">Transactions</h1>
-            <TransactionsTable />
-        </div>
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Start date:
+          <input type="text" name="start_date" value={this.state.start_date} onChange={this.handleChange} />
+        </label>
+		    <label>
+          End date:
+          <input type="text" name="end_date" value={this.state.end_date} onChange={this.handleChange} />
+        </label>
+        <input type="submit" value="Submit" className="button primary" />
+      </form>
     );
+  }
+}
+
+class TransactionsView extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+  		filters:{
+        start_date: '',
+    		end_date: ''
+      }
+    };
+
+    this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
+  }
+
+  handleSearchSubmit(event, filters) {
+    this.setState({
+      // filters: {
+      //   start_date: event.target.elements.start_date.value,
+    	// 	end_date: event.target.elements.end_date.value
+      // }
+      filters: filters
+    });
+  }
+
+  render() {
+    console.log(this.state);
+    const {
+      filters
+    } = this.state;
+
+    return (
+      <div>
+        <h1>Transactions</h1>
+        <TransactionsSearchForm onSubmit={this.handleSearchSubmit} />
+        <TransactionsTable filters={filters} />
+      </div>
+    );
+  }
 }
 
 ReactDOM.render(
-    <Transactions />,
+    <TransactionsView />,
     document.getElementById('root')
 );
