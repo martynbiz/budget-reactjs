@@ -4,6 +4,10 @@
  * @see Table sorting https://codepen.io/austinlyons/pen/YpmyJB
  */
 
+/*
+Notes: move ajax out of table coz we need to control when to make calls when 
+*/
+
 class TransactionsTable extends React.Component {
     constructor(props) {
         super(props);
@@ -17,6 +21,7 @@ class TransactionsTable extends React.Component {
     }
 
     componentDidMount() {
+      console.log("mount");
       fetch("transactions.json")
         .then(res => res.json())
         .then(
