@@ -1,7 +1,7 @@
 TODO
 
-logout button
 foundation framework in reactjs
+logout button
 
 Transactions (then the rest)
 * redirect after submit
@@ -21,3 +21,5 @@ Furher reading
 * redux?
 * native
 * spread attributes - https://zhenyong.github.io/react/docs/jsx-spread.html
+* https://reacttraining.com/react-router/web/guides/philosophy
+* router withRouter

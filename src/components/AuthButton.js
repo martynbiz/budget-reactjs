@@ -8,20 +8,11 @@ import {
 
 const AuthButton = withRouter(
   ({ history }) =>
-    Auth.isAuthenticated ? (
-      <p>
-        Welcome!{" "}
-        <button
-          onClick={() => {
-            Auth.signout(() => history.push("/"));
-          }}
-        >
-          Sign out
-        </button>
-      </p>
-    ) : (
-      <p>You are not logged in.</p>
-    )
+    <a onClick={() => {
+      if (window.confirm("Are you sure you want to logout?")) {
+        Auth.signout(() => history.push("/"));
+      }
+    }}>Logout</a>
 );
 
 export default AuthButton;
