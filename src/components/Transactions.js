@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import TransactionsSearchForm from './Transactions/SearchForm';
 import TransactionsTable from './Transactions/Table';
-import Layout from './Layout';
+
+import {
+  Link
+} from 'react-router-dom';
 
 class Transactions extends Component {
 
@@ -61,7 +64,7 @@ class Transactions extends Component {
   }
 
   render() {
-console.log(this.props.match.params);
+
     const {
       items,
       error,
@@ -69,11 +72,11 @@ console.log(this.props.match.params);
     } = this.state;
 
     return (
-      <Layout>
-        <a href="/transactions/create" className="button primary">Add</a>
+      <div>
+        <Link to="/transactions/create">Add</Link>
         <TransactionsSearchForm onSubmit={this.handleSearchSubmit} />
         <TransactionsTable items={items} error={error} isLoaded={isLoaded} onSort={this.handleTableSort} />
-      </Layout>
+      </div>
     );
   }
 
