@@ -20,7 +20,7 @@ class TransactionsAdd extends Component {
         <nav aria-label="You are here:" role="navigation">
           <ul className="breadcrumbs">
             <li><a href="#">Home</a></li>
-            <li><a href="#">Transactions</li>
+            <li><a href="#">Transactions</a></li>
             <li>
               <span className="show-for-sr">Current: </span> Add
             </li>
