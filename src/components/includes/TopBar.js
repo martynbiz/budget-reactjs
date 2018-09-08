@@ -5,14 +5,15 @@ import {
   Link
 } from 'react-router-dom';
 
-import Auth from './fakeAuth';
-import AuthButton from './AuthButton';
+import Auth from '../api/Auth';
+
+import LogoutLink from '../includes/LogoutLink';
 
 const TopBar = () => (
   <div className="top-bar">
     <div className="top-bar-left">
       <ul className="dropdown menu" data-dropdown-menu>
-        <li className="menu-text"><Link to="/">Home</Link></li>
+        <li className="menu-text"><Link to="/">Budget</Link></li>
       </ul>
     </div>
     <div className="top-bar-right show-for-medium">
@@ -22,7 +23,7 @@ const TopBar = () => (
           <li><NavLink to="/categories">Categories</NavLink></li>
           <li><NavLink to="/tags">Tags</NavLink></li>
           <li><NavLink to="/funds">Funds</NavLink></li>
-          <li><AuthButton/></li>
+          <li><LogoutLink/></li>
         </ul>
       ) : (
         <ul className="dropdown menu" data-dropdown-menu>

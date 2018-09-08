@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-import TransactionsForm from './Transactions/TransactionsForm';
-
 import {
   Prompt
 } from 'react-router-dom';
+
+import TransactionsForm from './includes/TransactionsForm';
 
 class TransactionsEdit extends Component {
 

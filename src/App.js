@@ -1,16 +1,5 @@
 import React, { Component } from 'react'
 
-import Home from './components/Home'
-import Transactions from './components/Transactions';
-import Categories from './components/Categories';
-import Tags from './components/Tags';
-import Funds from './components/Funds';
-import Login from './components/Login';
-import Register from './components/Register';
-import NotFound from './components/NotFound';
-import PrivateRoute from './components/PrivateRoute';
-import TopBar from './components/TopBar';
-
 import {
   BrowserRouter,
   Switch,
@@ -19,6 +8,18 @@ import {
 
 import $ from 'jquery';
 import 'foundation-sites';
+
+import Home from './components/Home'
+import Transactions from './components/Transactions';
+import Categories from './components/Categories';
+import Tags from './components/Tags';
+import Funds from './components/Funds';
+import Login from './components/Login';
+import Register from './components/Register';
+import NotFound from './components/NotFound';
+
+import PrivateRoute from './components/router/PrivateRoute';
+import TopBar from './components/includes/TopBar';
 
 export class App extends Component {
 

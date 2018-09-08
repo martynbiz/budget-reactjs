@@ -1,11 +1,11 @@
 import React from 'react';
 
-import Auth from './fakeAuth';
-
 import {
   Redirect,
   Route
 } from 'react-router-dom';
+
+import Auth from '../api/Auth';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route

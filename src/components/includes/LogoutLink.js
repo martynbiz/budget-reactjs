@@ -1,12 +1,12 @@
 import React from 'react';
 
-import Auth from './fakeAuth';
-
 import {
   withRouter
 } from 'react-router-dom';
 
-const AuthButton = withRouter(
+import Auth from '../api/Auth';
+
+const LogoutLink = withRouter(
   ({ history }) =>
     <a onClick={() => {
       if (window.confirm("Are you sure you want to logout?")) {
@@ -15,4 +15,4 @@ const AuthButton = withRouter(
     }}>Logout</a>
 );
 
-export default AuthButton;
+export default LogoutLink;

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 
-import TransactionsSearchForm from './Transactions/TransactionsSearchForm';
-import TransactionsTable from './Transactions/TransactionsTable';
+import TransactionsSearchForm from './includes/TransactionsSearchForm';
+import TransactionsTable from './includes/TransactionsTable';
+
+import TransactionsApi from './api/Transactions';
 
 import {
   Link
@@ -33,27 +35,27 @@ class TransactionsList extends Component {
 
   loadData(filters) {
 
-    fetch("/data/transactions.json")
-      .then(res => res.json())
-      .then(
-          (items) => {
-              this.setState({
-                  isLoaded: true,
-                  items: items
-              });
+    let successHandler = (items) => {
+        this.setState({
+            isLoaded: true,
+            items: items
+        });
+    };
+    successHandler = successHandler.bind(this);
 
-              console.log("Data loaded:", items);
-          },
-          // Note: it's important to handle errors here
-          // instead of a catch() block so that we don't swallow
-          // exceptions from actual bugs in components.
-          (error) => {
-              this.setState({
-                  isLoaded: true,
-                  error
-              });
-          }
-      );
+    let errorHandler = (error) => {
+        this.setState({
+            isLoaded: true,
+            error
+        });
+    };
+    errorHandler = errorHandler.bind(this);
+
+    TransactionsApi.fetchAll(
+      successHandler,
+      errorHandler
+    );
+
   }
 
   compareBy(key) {

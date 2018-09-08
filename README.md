@@ -1,7 +1,6 @@
 TODO
 
-foundation framework in reactjs
-logout button
+
 
 Transactions (then the rest)
 * redirect after submit
@@ -9,6 +8,8 @@ Transactions (then the rest)
 * table pagination
 * crud in reactjs
 * testing
+
+foundation/scss variables, etc?
 
 Api
 * authentication
@@ -23,3 +24,4 @@ Furher reading
 * spread attributes - https://zhenyong.github.io/react/docs/jsx-spread.html
 * https://reacttraining.com/react-router/web/guides/philosophy
 * router withRouter
+* https://medium.com/@nikolalsvk/loosing-bind-this-in-react-8637ebf372cf
