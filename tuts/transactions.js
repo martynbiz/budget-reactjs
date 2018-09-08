@@ -54,17 +54,28 @@ class TransactionsTable extends React.Component {
                   </thead>
                   <tbody>
                       {items.map(item => (
-                      <tr key={item.id}>
-                          <td>{item.description}</td>
-                          <td>{item.amount}</td>
-                          <td>{item.category}</td>
-                          <td>{item.purchased_at}</td>
-                      </tr>
+                        <TransactionsTableRow key={item.id} item={item} />
                       ))}
                   </tbody>
               </table>
           );
       }
+  }
+}
+
+class TransactionsTableRow extends React.Component {
+
+  render() {
+    const item = this.props.item;
+
+    return (
+      <tr>
+        <td>{item.description}</td>
+        <td>{item.amount}</td>
+        <td>{item.category}</td>
+        <td>{item.purchased_at}</td>
+      </tr>
+    );
   }
 }
 

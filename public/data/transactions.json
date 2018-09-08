@@ -1,0 +1,43 @@
+[{
+		"id": 1,
+		"description": "sildenafil citrate",
+		"purchased_at": "2018-01-02",
+		"amount": -2.61,
+		"category": "Gardening"
+	},
+	{
+		"id": 2,
+		"description": "Mountain Juniperus ashei",
+		"purchased_at": "2018-01-03",
+		"amount": -29.2,
+		"category": "Trains"
+	},
+	{
+		"id": 3,
+		"description": "Dextromathorphan HBr",
+		"purchased_at": "2018-01-01",
+		"amount": -211,
+		"category": "Stuff"
+	},
+	{
+		"id": 4,
+		"description": "Citrate",
+		"purchased_at": "2018-01-02",
+		"amount": -6.63,
+		"category": "Toilettries"
+	},
+	{
+		"id": 5,
+		"description": "Juniperus ashei",
+		"purchased_at": "2018-01-03",
+		"amount": -9.2,
+		"category": "DIY"
+	},
+	{
+		"id": 6,
+		"description": "Xtromatr",
+		"purchased_at": "2018-01-01",
+		"amount": 11,
+		"category": "Wage"
+	}
+]
