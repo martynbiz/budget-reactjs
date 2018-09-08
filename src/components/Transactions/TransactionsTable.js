@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import TransactionsTableRow from './TableRow';
 
 /**
  * This is just the display for transaction table. It needs to be passed submit and change

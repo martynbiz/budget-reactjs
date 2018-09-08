@@ -20,3 +20,4 @@ Furher reading
 * difference between controlled and uncontrolled elements
 * redux?
 * native
+* spread attributes - https://zhenyong.github.io/react/docs/jsx-spread.html

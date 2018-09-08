@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {
-  NavLink,
-  Link
+  NavLink
 } from 'react-router-dom';
 
 import Auth from './fakeAuth';
