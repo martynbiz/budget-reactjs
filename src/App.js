@@ -18,7 +18,7 @@ import NotFound from './components/NotFound';
 import PrivateRoute from './components/PrivateRoute';
 import AuthButton from './components/AuthButton';
 
-import Navigation from './components/Navigation';
+import TopBar from './components/TopBar';
 
 import {
   BrowserRouter,
@@ -29,7 +29,7 @@ import {
 const App = () => (
   <BrowserRouter>
     <div>
-      <Navigation/>
+      <TopBar/>
       <AuthButton />
       <div className="grid-container">
         <div className="grid-x">
