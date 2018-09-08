@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import TransactionsForm from './Transactions/TransactionsForm';
+
 import {
   Prompt
 } from 'react-router-dom';
@@ -9,6 +11,9 @@ class TransactionsCreate extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      formData: {
+        // TODO we need to fill this with the item's values
+      },
       isChanged: false
     };
     this.handleChange = this.handleChange.bind(this);
@@ -21,7 +26,9 @@ class TransactionsCreate extends Component {
     const name = target.name;
 
     this.setState({
-      [name]: value,
+      formData: {
+        [name]: value,
+      },
       isChanged: true,
     });
   }
@@ -34,30 +41,15 @@ class TransactionsCreate extends Component {
   }
 
   render() {
+    const formData = this.state.formData;
+
     return (
       <form onSubmit={this.handleSubmit}>
         <Prompt
           when={this.state.isChanged}
           message="Are you sure you want to leave?"/>
-
-        <label>
-          Description:
-          <input type="text" name="description" value={this.state.description} onChange={this.handleChange} />
-        </label>
-        <label>
-          Amount:
-          <input type="text" name="amount" value={this.state.amount} onChange={this.handleChange} />
-        </label>
-        <label>
-          Category:
-          <input type="text" name="category" value={this.state.category} onChange={this.handleChange} />
-        </label>
-        <label>
-          Purchased:
-          <input type="text" name="purchased_at" value={this.state.purchased_at} onChange={this.handleChange} />
-        </label>
-
-        <button type="submit">Create</button>
+        <TransactionsForm {...formData} onChange={this.handleChange}/>
+        <button type="submit" className="button primary">Create</button>
       </form>
     );
   }

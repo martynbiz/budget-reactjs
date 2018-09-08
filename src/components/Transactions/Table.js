@@ -46,7 +46,12 @@ class TransactionsTable extends Component {
                   </thead>
                   <tbody>
                       {items.map(item => (
-                        <TransactionsTableRow key={item.id} item={item} />
+                        <tr key={item.id}>
+                          <td>{item.description}</td>
+                          <td>{item.amount}</td>
+                          <td>{item.category}</td>
+                          <td>{item.purchased_at}</td>
+                        </tr>
                       ))}
                   </tbody>
               </table>

@@ -1,11 +1,22 @@
 TODO
-* difference between controlled and uncontrolled elements
-* import
-* authentication
-* build: transactions form, table pagination,
+
+logout button
+foundation framework in reactjs
+
+Transactions (then the rest)
+* redirect after submit
+* delete button
+* table pagination
+* crud in reactjs
 * testing
 
-single page app
-* https://reactjs.org/docs/create-a-new-react-app.html#create-react-app
-* foundation framework in reactjs
-* crud in reactjs
+Api
+* authentication
+* transactions, etc
+
+Furher reading
+* https://www.robinwieruch.de/react-pass-props-to-component/#react-props-syntax-spread-rest
+* advanced concepts
+* difference between controlled and uncontrolled elements
+* redux?
+* native

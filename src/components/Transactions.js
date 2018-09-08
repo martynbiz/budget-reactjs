@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import TransactionsSearchForm from './Transactions/SearchForm';
 import TransactionsTable from './Transactions/Table';
 

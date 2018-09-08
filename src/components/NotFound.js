@@ -1,8 +1,10 @@
 import React from 'react'
 
-const NotFound = () => (
+const NotFound = ({ location }) => (
   <div>
-    <h2>NotFound</h2>
+    <h3>
+      No match for <code>{location.pathname}</code>
+    </h3>
   </div>
 );
 
