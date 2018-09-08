@@ -7,4 +7,5 @@ TODO
 
 single page app
 * https://reactjs.org/docs/create-a-new-react-app.html#create-react-app
-* foundation framework in reactjs 
+* foundation framework in reactjs
+* crud in reactjs

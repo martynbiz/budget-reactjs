@@ -61,7 +61,7 @@ class Transactions extends Component {
   }
 
   render() {
-
+console.log(this.props.match.params);
     const {
       items,
       error,
