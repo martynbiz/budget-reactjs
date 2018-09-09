@@ -11,8 +11,8 @@ describe('<TransactionsTable />', () => {
     mount(<TransactionsTable />);
   });
 
-  it('contains a table', () => {
+  it('contains Pagination component', () => {
     const wrapper = mount(<TransactionsTable />);
-    expect(wrapper.find(Pagination)).to.have.lengthOf(1);
+    expect(wrapper.find(Pagination)).toHaveLength(1);
   });
 });

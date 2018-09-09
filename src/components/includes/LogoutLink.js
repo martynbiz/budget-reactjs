@@ -10,7 +10,7 @@ const LogoutLink = withRouter(
   ({ history=[] }) =>
     <a onClick={() => {
       if (window.confirm("Are you sure you want to logout?")) {
-        Auth.signout(() => history.push("/"));
+        Auth.logout(() => history.push("/"));
       }
     }}>Logout</a>
 );

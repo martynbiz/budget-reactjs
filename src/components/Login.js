@@ -4,6 +4,8 @@ import {
   Redirect
 } from 'react-router-dom';
 
+import FormErrors from './includes/FormErrors';
+
 import Auth from './api/Auth';
 
 class Login extends Component {
@@ -11,6 +13,8 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      email: '',
+      password: '',
       redirectToReferrer: false
     };
     this.handleChange = this.handleChange.bind(this);
@@ -28,33 +32,62 @@ class Login extends Component {
   }
 
   handleSubmit(event) {
-    Auth.authenticate(() => {
-      this.setState({ redirectToReferrer: true });
-    });
+
+    const {
+      email,
+      password
+    } = this.state;
+
+    const { from } = this.props.location.state || { from: { pathname: "/" } };
+
+    // TODO make this redirect consistent with others
+    Auth.login(email, password,
+
+      // successHandler
+      (data) => {
+        this.setState({
+          redirectTo: from
+        });
+      },
+
+      // errorHandler
+      (data) => {
+
+        this.setState({
+          errors: data.errors
+        });
+      }
+    );
     event.preventDefault();
   }
 
   render() {
 
-    const { from } = this.props.location.state || { from: { pathname: "/" } };
-    const { redirectToReferrer } = this.state;
+    const {
+      redirectTo,
+      errors
+    } = this.state;
 
-    if (redirectToReferrer) {
-      return <Redirect to={from} />;
+    // handle redirects
+    if (redirectTo) {
+      return <Redirect to={redirectTo} />
     }
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Email:
-          <input type="email" name="email" value={this.state.email} onChange={this.handleChange} />
-        </label>
-        <label>
-          Password:
-          <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
-        </label>
-        <button type="submit">Login</button>
-      </form>
+      <div>
+        <FormErrors errors={errors}/>
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Email:
+            <input type="email" name="email" value={this.state.email} onChange={this.handleChange} />
+          </label>
+          <label>
+            Password:
+            <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
+          </label>
+          <button type="submit">Login</button>
+        </form>
+      </div>
     );
   }
 }

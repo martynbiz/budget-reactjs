@@ -1,15 +1,12 @@
 TODO
 
-Transactions (then the rest)
-* flash messaging?
+Api
+* authentication
+* transactions, etc
 
 foundation/scss variables, etc?
 react inspector tool
 * testing - https://stackoverflow.com/questions/52247488/typeerror-cannot-read-property-have-of-undefined
-
-Api
-* authentication
-* transactions, etc
 
 Furher reading
 * https://www.robinwieruch.de/react-pass-props-to-component/#react-props-syntax-spread-rest
