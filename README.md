@@ -1,11 +1,11 @@
 TODO
 
 Transactions (then the rest)
-* testing - shallow testing for TopBar (contains LogoutLink), etc
 * flash messaging?
 
 foundation/scss variables, etc?
 react inspector tool
+* testing - https://stackoverflow.com/questions/52247488/typeerror-cannot-read-property-have-of-undefined
 
 Api
 * authentication

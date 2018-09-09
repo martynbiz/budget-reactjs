@@ -38,8 +38,8 @@ class TransactionsCreate extends Component {
       this.setState({
         isChanged: false,
         redirectTo: {
-          path: `/transactions`,
-          flash_message: "Transaction has been created"
+          pathname: "/transactions",
+          state: { flash_message: "Transaction has been created" }
         },
       });
     }
@@ -65,11 +65,7 @@ class TransactionsCreate extends Component {
 
     // handle redirects
     if (this.state.redirectTo) {
-      return <Redirect to={this.state.redirectTo.path} />
-    }
-
-    if (this.state.redirectToReferrer === true) {
-      return <Redirect to='/transactions' />
+      return <Redirect to={this.state.redirectTo} />
     }
 
     return (

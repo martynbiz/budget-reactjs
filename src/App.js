@@ -6,6 +6,8 @@ import {
   Route
 } from 'react-router-dom';
 
+import FlashMessage from 'react-flash-message'
+
 import $ from 'jquery';
 import 'foundation-sites';
 
@@ -21,6 +23,23 @@ import NotFound from './components/NotFound';
 import PrivateRoute from './components/router/PrivateRoute';
 import TopBar from './components/includes/TopBar';
 
+/**
+ * flash_message will arrive by <Route/> location prop so
+ * we need a component here it (see <App/>)
+ */
+const FlashMessageWrapper = ({ location, duration }) => (
+  <div>
+    {
+      location &&
+      location.state &&
+      location.state.flash_message &&
+        <FlashMessage duration={2000}>
+          <div className="callout success">{location.state.flash_message}</div>
+        </FlashMessage>
+    }
+  </div>
+);
+
 export class App extends Component {
 
   // add foundation to the document (page) only after the other page
@@ -30,6 +49,7 @@ export class App extends Component {
   }
 
   render() {
+
     return (
       <BrowserRouter>
         <div>
@@ -37,6 +57,7 @@ export class App extends Component {
           <div className="grid-container">
             <div className="grid-x">
               <div className="cell small-12">
+                <Route component={FlashMessageWrapper}/>
                 <Switch>
                   <Route path="/" component={Home} exact/>
                   <PrivateRoute path="/transactions" component={Transactions}/>

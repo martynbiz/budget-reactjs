@@ -36,15 +36,20 @@ class TransactionsEdit extends Component {
   handleSubmit(event) {
     this.setState({
       isChanged: false,
+      redirectTo: {
+        pathname: "/transactions",
+        state: { flash_message: "Transaction has been updated" }
+      },
     });
     event.preventDefault();
   }
 
   handleDelete(event) {
     this.setState({
+      isChanged: false,
       redirectTo: {
-        path: "/transactions",
-        flash_message: "Transaction has been deleted"
+        pathname: "/transactions",
+        state: { flash_message: "Transaction has been deleted" }
       },
     });
     event.preventDefault();
@@ -54,7 +59,7 @@ class TransactionsEdit extends Component {
 
     // handle redirects
     if (this.state.redirectTo) {
-      return <Redirect to={this.state.redirectTo.path} />
+      return <Redirect to={this.state.redirectTo} />
     }
 
     return (
