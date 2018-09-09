@@ -1,14 +1,11 @@
 TODO
 
-
-
 Transactions (then the rest)
-* table pagination
-* crud in reactjs
-* testing
+* testing - shallow testing for TopBar (contains LogoutLink), etc
 * flash messaging?
 
 foundation/scss variables, etc?
+react inspector tool
 
 Api
 * authentication

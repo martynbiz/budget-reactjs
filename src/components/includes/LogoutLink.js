@@ -7,7 +7,7 @@ import {
 import Auth from '../api/Auth';
 
 const LogoutLink = withRouter(
-  ({ history }) =>
+  ({ history=[] }) =>
     <a onClick={() => {
       if (window.confirm("Are you sure you want to logout?")) {
         Auth.signout(() => history.push("/"));

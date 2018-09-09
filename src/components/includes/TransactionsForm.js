@@ -4,7 +4,7 @@ import React from 'react';
  * This is just the display for transaction table. It needs to be passed submit and change
  * handles in its props
  */
-const TransactionsForm = ( { description, amount, category, purchased_at, onChange } ) => (
+const TransactionsForm = ({ description, amount, category, purchased_at, onChange }) => (
   <div>
     <label>
       Description:
