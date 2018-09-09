@@ -3,11 +3,11 @@ TODO
 
 
 Transactions (then the rest)
-* redirect after submit
 * delete button
 * table pagination
 * crud in reactjs
 * testing
+* flash messaging?
 
 foundation/scss variables, etc?
 

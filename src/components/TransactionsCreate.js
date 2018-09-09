@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
 
 import {
-  Prompt
+  Prompt,
+  Redirect
 } from 'react-router-dom';
 
 import TransactionsForm from './includes/TransactionsForm';
+import FormErrors from './includes/FormErrors';
+import TransactionsApi from './api/Transactions';
 
 class TransactionsCreate extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      formData: {
-        // TODO we need to fill this with the item's values
-      },
-      isChanged: false
+      isChanged: false,
+      errors: []
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -34,21 +35,44 @@ class TransactionsCreate extends Component {
   }
 
   handleSubmit(event) {
-    this.setState({
-      isChanged: false,
-    });
+
+    const successHandler = () => {
+      this.setState({
+        isChanged: false,
+        redirectToReferrer: true
+      });
+    }
+    successHandler.bind(this);
+
+    const errorHandler = (errors) => {
+      this.setState({
+        errors: errors
+      });
+    }
+    errorHandler.bind(this);
+
+    TransactionsApi.create(
+      this.state, // TODO whitelist this?
+      successHandler,
+      errorHandler
+    );
+
     event.preventDefault();
   }
 
   render() {
-    const formData = this.state.formData;
+
+    if (this.state.redirectToReferrer === true) {
+      return <Redirect to='/transactions' />
+    }
 
     return (
       <form onSubmit={this.handleSubmit}>
         <Prompt
           when={this.state.isChanged}
           message="Are you sure you want to leave?"/>
-        <TransactionsForm {...formData} onChange={this.handleChange}/>
+        <FormErrors errors={this.state.errors}/>
+        <TransactionsForm {...this.state} onChange={this.handleChange}/>
         <button type="submit" className="button primary">Create</button>
       </form>
     );
