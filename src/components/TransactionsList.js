@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import TransactionsEdit from './TransactionsEdit';
-
 import TransactionsSearchForm from './includes/TransactionsSearchForm';
 import TransactionsTable from './includes/TransactionsTable';
 import TransactionsApi from './api/Transactions';

@@ -3,7 +3,6 @@ TODO
 
 
 Transactions (then the rest)
-* delete button
 * table pagination
 * crud in reactjs
 * testing

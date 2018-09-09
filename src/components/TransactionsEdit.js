@@ -7,7 +7,7 @@ import {
 
 import TransactionsForm from './includes/TransactionsForm';
 import FormErrors from './includes/FormErrors';
-import TransactionsApi from './api/Transactions';
+// import TransactionsApi from './api/Transactions';
 
 class TransactionsEdit extends Component {
 
