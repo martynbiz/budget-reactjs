@@ -27,9 +27,7 @@ class TransactionsCreate extends Component {
     const name = target.name;
 
     this.setState({
-      formData: {
-        [name]: value,
-      },
+      [name]: value,
       isChanged: true,
     });
   }
@@ -39,7 +37,10 @@ class TransactionsCreate extends Component {
     const successHandler = () => {
       this.setState({
         isChanged: false,
-        redirectToReferrer: true
+        redirectTo: {
+          path: `/transactions`,
+          flash_message: "Transaction has been created"
+        },
       });
     }
     successHandler.bind(this);
@@ -61,6 +62,11 @@ class TransactionsCreate extends Component {
   }
 
   render() {
+
+    // handle redirects
+    if (this.state.redirectTo) {
+      return <Redirect to={this.state.redirectTo.path} />
+    }
 
     if (this.state.redirectToReferrer === true) {
       return <Redirect to='/transactions' />

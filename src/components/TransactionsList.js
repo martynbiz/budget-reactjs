@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 
+import TransactionsEdit from './TransactionsEdit';
+
 import TransactionsSearchForm from './includes/TransactionsSearchForm';
 import TransactionsTable from './includes/TransactionsTable';
-
 import TransactionsApi from './api/Transactions';
 
 import {
@@ -66,23 +67,6 @@ class TransactionsList extends Component {
       };
   }
 
-  render() {
-
-    const {
-      items,
-      error,
-      isLoaded
-    } = this.state;
-
-    return (
-      <div>
-        <Link to="/transactions/create" className="button primary">Add</Link>
-        <TransactionsSearchForm onSubmit={this.handleSearchSubmit} />
-        <TransactionsTable items={items} error={error} isLoaded={isLoaded} onSort={this.handleTableSort} />
-      </div>
-    );
-  }
-
   handleTableSort(event, key) {
 
       let arrayCopy = [...this.state.items];
@@ -110,10 +94,24 @@ class TransactionsList extends Component {
   }
 
   handleSearchSubmit(event, filters) {
+
     this.setState({
       filters: filters
     });
     this.loadData( filters );
+
+    event.preventDefault();
+  }
+
+  render() {
+
+    return (
+      <div>
+        <Link to="/transactions/create" className="button primary">Add</Link>
+        <TransactionsSearchForm onSubmit={this.handleSearchSubmit} />
+        <TransactionsTable {...this.state} onSort={this.handleTableSort} />
+      </div>
+    );
   }
 }
 

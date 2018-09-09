@@ -1,23 +1,25 @@
 import React, { Component } from 'react';
 
 import {
-  Prompt
+  Prompt,
+  Redirect
 } from 'react-router-dom';
 
 import TransactionsForm from './includes/TransactionsForm';
+import FormErrors from './includes/FormErrors';
+import TransactionsApi from './api/Transactions';
 
 class TransactionsEdit extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      formData: {
-        // TODO we need to fill this with the item's values
-      },
-      isChanged: false
+      isChanged: false,
+      errors: []
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleChange(event) {
@@ -26,9 +28,7 @@ class TransactionsEdit extends Component {
     const name = target.name;
 
     this.setState({
-      formData: {
-        [name]: value,
-      },
+      [name]: value,
       isChanged: true,
     });
   }
@@ -40,17 +40,36 @@ class TransactionsEdit extends Component {
     event.preventDefault();
   }
 
+  handleDelete(event) {
+    this.setState({
+      redirectTo: {
+        path: "/transactions",
+        flash_message: "Transaction has been deleted"
+      },
+    });
+    event.preventDefault();
+  }
+
   render() {
-    const formData = this.state.formData;
+
+    // handle redirects
+    if (this.state.redirectTo) {
+      return <Redirect to={this.state.redirectTo.path} />
+    }
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        <Prompt
-          when={this.state.isChanged}
-          message="Are you sure you want to leave?"/>
-        <TransactionsForm {...formData} onChange={this.handleChange}/>
-        <button type="submit" className="button primary">Create</button>
-      </form>
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <Prompt
+            when={this.state.isChanged}
+            message="Are you sure you want to leave?"/>
+          <FormErrors errors={this.state.errors}/>
+          <TransactionsForm {...this.state} onChange={this.handleChange}/>
+          <button type="submit" className="button primary">Update</button>
+        </form>
+        <hr/>
+        <button type="submit" className="button primary" onClick={this.handleDelete}>Delete</button>
+      </div>
     );
   }
 }
