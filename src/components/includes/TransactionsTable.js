@@ -55,7 +55,7 @@ class TransactionsTable extends Component {
     const {
       error,
       isLoaded,
-      items
+      data
     } = this.props;
 
     if (error) {
@@ -65,10 +65,11 @@ class TransactionsTable extends Component {
     } else {
 
       // these will be passed to the <Pagination/> component, but we need them
-      // for the slice too so we declare them up here first 
+      // for the slice too so we declare them up here first
+      // TODO pass this in as props
       const pagination = {
-        totalItems: items.length,
-        itemsPerPage: 2,
+        totalItems: data.length,
+        itemsPerPage: 10,
         currentPage: this.state.currentPage,
         onPaginate: this.handlePaginate
       }
@@ -89,12 +90,12 @@ class TransactionsTable extends Component {
               </tr>
             </thead>
             <tbody>
-              {items.slice(start, end).map(item => (
-                <tr key={item.id} onClick={(e) => this.handleClick(e, item.id)}>
-                  <td>{item.description}</td>
-                  <td>{item.amount}</td>
-                  <td>{item.category}</td>
-                  <td>{item.purchased_at}</td>
+              {data.slice(start, end).map(transaction => (
+                <tr key={transaction.id} onClick={(e) => this.handleClick(e, transaction.id)}>
+                  <td>{transaction.description}</td>
+                  <td>{transaction.amount}</td>
+                  <td>{transaction.category.name}</td>
+                  <td>{transaction.purchased_at}</td>
                 </tr>
               ))}
             </tbody>

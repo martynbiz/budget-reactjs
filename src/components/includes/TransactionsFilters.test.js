@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { mount } from 'enzyme';
-import FormErrors from './FormErrors';
+import TransactionsFilters from './TransactionsFilters';
 
 it('renders without crashing', () => {
-  mount(<FormErrors />);
+  mount(<TransactionsFilters />);
 });

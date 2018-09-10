@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 
 import TransactionsForm from './includes/TransactionsForm';
-import FormErrors from './includes/FormErrors';
+import ShowErrors from './includes/ShowErrors';
 import TransactionsApi from './api/Transactions';
 
 class TransactionsCreate extends Component {
@@ -73,7 +73,7 @@ class TransactionsCreate extends Component {
         <Prompt
           when={this.state.isChanged}
           message="Are you sure you want to leave?"/>
-        <FormErrors errors={this.state.errors}/>
+        <ShowErrors errors={this.state.errors}/>
         <TransactionsForm {...this.state} onChange={this.handleChange}/>
         <button type="submit" className="button primary">Create</button>
       </form>

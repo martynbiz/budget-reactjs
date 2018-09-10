@@ -1,8 +1,21 @@
 TODO
 
-Api
-* authentication
-* transactions, etc
+bug: filters a bit buggered
+maintain table sort/dir when filtrring
+
+! remove isLoaded from table
+
+Transactions
+* transactions: create, update, delete
+* filters
+* populate categories/ tags/ months filters
+
+
+
+
+* categories: list, create, update, delete
+* tags: list, create, update, delete
+* funds: list, create, update, delete; get fund on auth; fund switcher;
 
 foundation/scss variables, etc?
 react inspector tool

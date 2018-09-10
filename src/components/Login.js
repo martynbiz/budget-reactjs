@@ -4,7 +4,7 @@ import {
   Redirect
 } from 'react-router-dom';
 
-import FormErrors from './includes/FormErrors';
+import ShowErrors from './includes/ShowErrors';
 
 import Auth from './api/Auth';
 
@@ -75,7 +75,7 @@ class Login extends Component {
 
     return (
       <div>
-        <FormErrors errors={errors}/>
+        <ShowErrors errors={errors}/>
         <form onSubmit={this.handleSubmit}>
           <label>
             Email:
