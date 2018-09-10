@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 
+import Moment from 'react-moment';
+
 import {
   Redirect
 } from 'react-router-dom';
 
-import Pagination from './Pagination';
+import PaginationLinks from './PaginationLinks';
 
 /**
  * This is just the display for transaction table. It needs to be passed submit and change
@@ -47,7 +49,7 @@ class TransactionsTable extends Component {
 
   render() {
 
-    // handle redirects
+    // handle redirects to edit page
     if (this.state.redirectTo) {
       return <Redirect to={this.state.redirectTo.path} />
     }
@@ -78,29 +80,44 @@ class TransactionsTable extends Component {
       const end = pagination.currentPage * pagination.itemsPerPage;
       const start = end - pagination.itemsPerPage;
 
+      const calendarStrings = {
+          lastDay : '[Yesterday at] LT',
+          sameDay : '[Today at] LT',
+          nextDay : '[Tomorrow at] LT',
+          lastWeek : '[last] dddd [at] LT',
+          nextWeek : 'dddd [at] LT',
+          sameElse : 'L'
+      };
+
       return (
-        <div>
-          <table>
-            <thead>
-              <tr>
-                <th onClick={(e) => this.handleSort(e, 'description')} >Description</th>
-                <th onClick={(e) => this.handleSort(e, 'amount')} >Amount</th>
-                <th onClick={(e) => this.handleSort(e, 'category')} >Category</th>
-                <th onClick={(e) => this.handleSort(e, 'purchased_at')} >Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {data.slice(start, end).map(transaction => (
-                <tr key={transaction.id} onClick={(e) => this.handleClick(e, transaction.id)}>
-                  <td>{transaction.description}</td>
-                  <td>{transaction.amount}</td>
-                  <td>{transaction.category.name}</td>
-                  <td>{transaction.purchased_at}</td>
+        <div className="grid-x grid-padding-x">
+          <div className="small-12 cell">
+            <table>
+              <thead>
+                <tr>
+                  <th onClick={(e) => this.handleSort(e, 'description')} >Description</th>
+                  <th onClick={(e) => this.handleSort(e, 'amount')} >Amount</th>
+                  <th onClick={(e) => this.handleSort(e, 'category')} className="show-for-sr" >Category</th>
+                  <th onClick={(e) => this.handleSort(e, 'purchased_at')} >Date</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-          <Pagination {...pagination}/>
+              </thead>
+              <tbody>
+                {data.slice(start, end).map(transaction => (
+                  <tr key={transaction.id} onClick={(e) => this.handleClick(e, transaction.id)}>
+                    <td>{transaction.description}</td>
+                    <td>{transaction.amount}</td>
+                    <td className="show-for-sr">{transaction.category.name}</td>
+                    <td>
+                      <Moment parse="YYYY-MM-DD" format="D/M/YYYY" calendar={calendarStrings}>
+                          {transaction.purchased_at}
+                      </Moment>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <PaginationLinks {...pagination}/>
+          </div>
         </div>
       );
     }

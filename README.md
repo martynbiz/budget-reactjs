@@ -1,13 +1,12 @@
 TODO
 
-bug: filters a bit buggered
-maintain table sort/dir when filtrring
-
-! remove isLoaded from table
+bug/enhancements list:
+* maintain table sort/dir when filtrring
+* remove isLoaded from table
+* bug: category sort doesn't work
 
 Transactions
 * transactions: create, update, delete
-* filters
 * populate categories/ tags/ months filters
 
 

@@ -42,10 +42,10 @@ class TransactionsFilters extends Component {
 
     return (
       <form onSubmit={this.handleSubmit}>
-        <div className="grid-x">
+        <div className="grid-x grid-padding-x">
           <div className="small-12 medium-4 cell">
             <label className="show-for-sr">Month</label>
-            <select name="month" onChange={this.handleChange}>
+            <select name="month" onChange={this.handleChange} value={this.props.month}>
               <option value="">All months</option>
               <option value="2018-09"> Sep 2018</option>
               <option value="2018-08"> Aug 2018</option>
@@ -57,7 +57,7 @@ class TransactionsFilters extends Component {
           </div>
           <div className="small-12 medium-4 cell">
             <label className="show-for-sr">Categories</label>
-            <select name="category" onChange={this.handleChange}>
+            <select name="category" onChange={this.handleChange} value={this.props.category}>
               <option value="">All categories</option>
               <option value="33">Accommodation</option>
               <option value="1">Alcohol</option>
@@ -67,7 +67,7 @@ class TransactionsFilters extends Component {
           </div>
           <div className="small-12 medium-4 cell">
             <label className="show-for-sr">Tag</label>
-            <select name="tag" onChange={this.handleChange}>
+            <select name="tag" onChange={this.handleChange} value={this.props.tag}>
               <option value="">All tags</option>
               <option value="18">Belladrum festival 2018</option>
               <option value="23">Chicken house</option>

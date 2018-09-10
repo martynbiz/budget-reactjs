@@ -18,34 +18,37 @@ class TransactionsList extends Component {
       errors: [],
       isLoaded: false,
       data: [],
-  		// filters:{
-      //   // start_date: '',
-    	// 	// end_date: ''
-      // },
       sortBy: "purchased_at",
-      sortDir: "desc"
+      sortDir: "desc",
+      limit: 1000,
+      query: {
+        month: "2018-09"
+      }
     };
 
-    // this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     this.handleFilterChange = this.handleFilterChange.bind(this);
     this.handleTableSort = this.handleTableSort.bind(this);
   }
 
   componentDidMount() {
-    this.loadData( this.state.filters );
+    this.loadData( this.state.query );
   }
 
-  loadData(filters={}) {
+  loadData(query={}) {
 
-    // get current fund
-    filters["fund"] = 1;
+    // set current fund
+    query["fund"] = 1;
+
+    // set limit
+    query["limit"] = 1000;
 
     TransactionsApi.fetchAll(
-      filters,
+      query,
       (data) => {
         this.setState({
           isLoaded: true,
-          data: data
+          data: data,
+          query: query
         });
       },
       (data) => {
@@ -58,18 +61,17 @@ class TransactionsList extends Component {
 
   }
 
-  compareBy(key) {
-    return function(a, b) {
+  handleTableSort(event, key) {
+
+    let arrayCopy = [...this.state.data];
+
+    const compareBy = (a, b) => {
       if (a[key] < b[key]) return -1;
       if (a[key] > b[key]) return 1;
       return 0;
     };
-  }
 
-  handleTableSort(event, key) {
-
-    let arrayCopy = [...this.state.data];
-    arrayCopy.sort(this.compareBy(key)); // asc
+    arrayCopy.sort(compareBy); // asc
 
     // sort by. Reset direction if new sort column
     let dir = this.state.dir;
@@ -92,30 +94,35 @@ class TransactionsList extends Component {
 
   }
 
-  // handleSearchSubmit(event, filters) {
+  // handleSearchSubmit(event, query) {
   //
   //   this.setState({
-  //     filters: filters
+  //     query: query
   //   });
-  //   this.loadData( filters );
+  //   this.loadData( query );
   //
   //   event.preventDefault();
   // }
 
-  handleFilterChange(event, filters) {
-    this.loadData(filters);
+  handleFilterChange(event, query) {
+    this.loadData(query);
   }
 
   render() {
+
+    console.log("render", this.state.query);
+
     return (
-      <div>
-        <ShowErrors errors={this.state.errors}/>
-        <Link to="/transactions/create" className="button primary">Add</Link>
-        <TransactionsFilters onChange={this.handleFilterChange} />
-        {
-          // <TransactionsSearchForm onSubmit={this.handleSearchSubmit} />
-        }
-        <TransactionsTable {...this.state} onSort={this.handleTableSort} />
+      <div className="grid-x grid-padding-x padding-y">
+        <div className="small-12 cell">
+          <ShowErrors errors={this.state.errors}/>
+          <Link to="/transactions/create" className="button primary">Add</Link>
+          <TransactionsFilters {...this.state.query} onChange={this.handleFilterChange} />
+          {
+            // <TransactionsSearchForm onSubmit={this.handleSearchSubmit} />
+          }
+          <TransactionsTable {...this.state} onSort={this.handleTableSort} />
+        </div>
       </div>
     );
   }
